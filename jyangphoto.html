@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jie Yang Photography</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root{
+  --marsh:#0D0D0B;
+  --marsh-deep:#000000;
+  --parchment:#FAFAF7;
+  --parchment-line:#E4E2D9;
+  --ink:#121210;
+  --heron:#8C8C86;
+  --oriole:#FFC72C;
+  --max:1180px;
+}
+
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--parchment);
+  color:var(--ink);
+  font-family:'Inter',sans-serif;
+  font-size:16px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *{animation-duration:.01ms !important; transition-duration:.01ms !important;}
+}
+
+h1,h2,h3{
+  margin:0; font-family:'Oswald',sans-serif; font-weight:600;
+  text-transform:uppercase; letter-spacing:.01em; line-height:1.02;
+}
+a{color:inherit;}
+a:focus-visible, button:focus-visible{outline:2px solid var(--oriole); outline-offset:3px;}
+.mono{font-family:'Inter',sans-serif; text-transform:uppercase; letter-spacing:.12em; font-weight:600;}
+
+.wrap{max-width:var(--max); margin:0 auto; padding:0 36px;}
+header.site .wrap{padding-left:36px; padding-right:52px;}
+@media (max-width:560px){
+  .wrap{padding:0 22px;}
+  header.site .wrap{padding-left:22px; padding-right:26px;}
+}
+
+/* Caption row — sleek key/value line, yellow tick marker */
+.log-line{
+  display:flex; align-items:center; gap:10px; font-size:.72rem;
+  letter-spacing:.1em; text-transform:uppercase; color:var(--heron); flex-wrap:wrap; font-weight:600;
+}
+.log-line span:first-child{position:relative; padding-left:14px;}
+.log-line span:first-child::before{
+  content:''; position:absolute; left:0; top:50%; transform:translateY(-50%);
+  width:7px; height:7px; background:var(--oriole);
+}
+.log-line .leader{flex:0 0 auto; border:none; width:auto; height:auto; margin:0; opacity:.4;}
+.log-line .leader::before{content:'—';}
+section.dark .log-line{color:rgba(250,250,247,0.55);}
+
+@media (max-width:600px){
+  .log-line{flex-direction:column; align-items:flex-start; gap:2px;}
+  .log-line .leader{display:none;}
+}
+
+.contact-hero{display:flex; align-items:center;}
+
+/* Header */
+header.site{
+  position:sticky; top:0; z-index:20;
+  background:rgba(13,13,11,0.96);
+  border-bottom:1px solid var(--oriole);
+}
+.nav-row{display:flex; align-items:center; justify-content:space-between; padding:18px 0;}
+.brand{
+  font-family:'Oswald',sans-serif; font-weight:700; text-transform:uppercase;
+  font-size:1.3rem; letter-spacing:.03em; text-decoration:none; color:#fff;
+}
+.brand .mono{font-weight:600; font-size:.65rem; letter-spacing:.16em; color:var(--oriole); display:block; margin-top:2px;}
+nav.primary{display:flex; gap:30px; align-items:center;}
+nav.primary a{
+  text-decoration:none; font-family:'Inter',sans-serif; font-size:.74rem; font-weight:600;
+  letter-spacing:.1em; text-transform:uppercase; color:#fff; opacity:.65; padding:6px 0;
+}
+nav.primary a:hover, nav.primary a.active{opacity:1; color:var(--oriole);}
+.menu-btn{display:none; background:none; border:1px solid var(--oriole); color:#fff; padding:8px 14px; font-family:'Inter',sans-serif; font-weight:600; font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; cursor:pointer;}
+
+/* Gallery dropdown */
+.dropdown{position:relative; display:flex; align-items:center;}
+.dropdown-row{display:flex; align-items:center;}
+.submenu-btn{display:none; background:none; border:none; padding:0; margin:0; cursor:pointer; color:var(--oriole); font-size:1rem;}
+.dropdown-menu{
+  display:none; flex-direction:column; position:absolute; top:100%; left:0; margin-top:6px;
+  background:var(--marsh-deep); border:1px solid var(--oriole); min-width:170px; padding:6px 0; z-index:30;
+}
+.dropdown:hover .dropdown-menu, .dropdown:focus-within .dropdown-menu{display:flex;}
+.dropdown-menu a{padding:12px 18px; width:100%; opacity:.75;}
+.dropdown-menu a:hover{opacity:1; color:var(--oriole);}
+
+@media (max-width:760px){
+  nav.primary{display:none; position:absolute; top:100%; left:0; right:0; background:var(--marsh-deep); flex-direction:column; gap:0; border-bottom:1px solid var(--oriole);}
+  nav.primary.open{display:flex;}
+  nav.primary a{padding:16px 28px; width:100%; border-top:1px solid rgba(255,255,255,0.1);}
+  .menu-btn{display:block;}
+  .dropdown{flex-direction:column; align-items:stretch; width:100%;}
+  .dropdown-row{width:100%; justify-content:space-between; border-top:1px solid rgba(255,255,255,0.1);}
+  .dropdown-row a{border-top:none; flex:1;}
+  .submenu-btn{
+    display:flex; align-items:center; justify-content:center;
+    width:52px; font-size:1.3rem; line-height:1; color:var(--oriole);
+    transition:transform .2s;
+  }
+  .submenu-btn.open{transform:rotate(90deg);}
+  .dropdown-menu{
+    display:none; position:static; margin:0; border:none;
+    background:rgba(255,255,255,0.03); padding:0; width:100%;
+  }
+  .dropdown-menu.open{display:flex;}
+  .dropdown-menu a{padding:14px 28px 14px 44px; border-top:1px solid rgba(255,255,255,0.08); font-size:.7rem;}
+}
+
+/* Hero */
+.hero{background:var(--marsh); color:#fff; padding:100px 0 72px; position:relative;}
+.hero::before{content:''; position:absolute; top:0; left:0; width:6px; height:100%; background:var(--oriole);}
+.hero .eyebrow{
+  font-family:'Inter',sans-serif; font-weight:700; font-size:.75rem; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--oriole); display:block; margin-bottom:18px;
+}
+.hero h1{font-size:clamp(3rem,9vw,6.4rem); color:#fff;}
+.hero p.sub{font-family:'Inter',sans-serif; font-size:clamp(1rem,2vw,1.2rem); opacity:.75; margin-top:20px; max-width:56ch; text-transform:none; letter-spacing:0; font-weight:400; line-height:1.6;}
+
+/* Sections */
+section{padding:72px 0;}
+section.dark{background:var(--marsh); color:#fff;}
+.section-head{display:flex; align-items:baseline; justify-content:space-between; gap:16px; margin-bottom:40px; flex-wrap:wrap; border-bottom:2px solid var(--ink); padding-bottom:18px;}
+section.dark .section-head{border-bottom-color:var(--oriole);}
+.section-head h2{font-size:clamp(1.7rem,4vw,2.5rem);}
+.section-head .count{font-family:'Inter',sans-serif; font-weight:700; font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; color:var(--oriole);}
+
+.grid{display:grid; gap:24px;}
+.grid-2{grid-template-columns:1fr 1fr;}
+.grid-3{grid-template-columns:repeat(3,1fr);}
+.grid-4{grid-template-columns:repeat(4,1fr);}
+@media (max-width:900px){.grid-3,.grid-4{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:560px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr;}}
+
+.placeholder-img{
+  width:100%; aspect-ratio:4/3;
+  background:repeating-linear-gradient(45deg, rgba(0,0,0,0.06) 0 2px, transparent 2px 16px), #DCDCD4;
+  border:none;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Inter',sans-serif; font-weight:600; font-size:.68rem; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--heron); text-align:center; padding:10px;
+}
+.placeholder-img.wide{aspect-ratio:16/9;}
+.placeholder-img.tall{aspect-ratio:3/4;}
+
+figure{margin:0;}
+figcaption{margin-top:12px;}
+figcaption .species{
+  font-family:'Oswald',sans-serif; font-weight:600; text-transform:uppercase;
+  font-size:1rem; letter-spacing:.02em; display:block; margin-bottom:6px;
+}
+
+.btn{
+  display:inline-block; padding:14px 28px; text-decoration:none;
+  background:var(--ink); color:#fff; font-family:'Inter',sans-serif; font-weight:700;
+  font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; transition:background .2s,color .2s; border:2px solid var(--ink);
+}
+.btn:hover{background:transparent; color:var(--ink);}
+.btn.solid{background:var(--oriole); border-color:var(--oriole); color:var(--marsh-deep);}
+.btn.solid:hover{background:transparent; color:var(--oriole);}
+section.dark .btn{background:var(--oriole); border-color:var(--oriole); color:var(--marsh-deep);}
+section.dark .btn:hover{background:transparent; color:var(--oriole);}
+
+p.lede{font-size:1.15rem; max-width:60ch; font-weight:400;}
+p.body-text{max-width:64ch; opacity:.85;}
+
+.card{background:#fff; border:1px solid var(--parchment-line); padding:26px; border-left:3px solid var(--oriole);}
+section.dark .card{background:rgba(255,255,255,0.04); border-color:rgba(255,255,255,0.12); border-left:3px solid var(--oriole);}
+
+/* Footer */
+footer.site{background:var(--marsh); color:#fff; padding:40px 0; margin-top:20px; border-top:1px solid var(--oriole);}
+.foot-row{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;}
+.foot-note{font-family:'Inter',sans-serif; font-size:.72rem; letter-spacing:.05em; opacity:.6;}
+
+div[id]{scroll-margin-top:90px;}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav-row">
+    <a class="brand" href="#home">Jie Yang Photography<span class="mono">Maryland, USA</span></a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="mainNav" onclick="const n=document.getElementById('mainNav');const open=n.classList.toggle('open');this.setAttribute('aria-expanded',open);">Menu</button>
+    <nav class="primary" id="mainNav">
+      <a href="#home">Home</a>
+      <div class="dropdown">
+        <div class="dropdown-row">
+          <a href="#gallery" class="dropdown-toggle">Gallery</a>
+          <button type="button" class="submenu-btn" aria-expanded="false" aria-label="Toggle Gallery submenu" onclick="const m=this.parentElement.nextElementSibling;const open=m.classList.toggle('open');this.classList.toggle('open',open);this.setAttribute('aria-expanded',open);">&rsaquo;</button>
+        </div>
+        <div class="dropdown-menu">
+          <a href="#birding">Birding</a>
+          <a href="#animals">Animals</a>
+          <a href="#landscapes">Landscapes</a>
+        </div>
+      </div>
+      <a href="#locations">Locations</a>
+      <a href="#about">About Jie</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div id="home"><section class="hero">
+  <div class="wrap">
+    <h1>Field Notes<br>and Photography</h1>
+    <p class="sub">A running photo log from the marshes, forests, and shorelines of Maryland — kept by Jie, one sighting at a time.</p>
+    <a class="btn solid" href="gallery.html" style="margin-top:26px; display:inline-block;">View the gallery</a>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Recent sightings</h2>
+      <span class="count">[00] species logged</span>
+    </div>
+    <div class="grid grid-3">
+      <figure>
+        <div class="placeholder-img">Photo placeholder</div>
+        <figcaption>
+          <span class="species">[Species name]</span>
+          <div class="log-line"><span>[Location]</span><span class="leader"></span><span>[Date]</span></div>
+        </figcaption>
+      </figure>
+      <figure>
+        <div class="placeholder-img">Photo placeholder</div>
+        <figcaption>
+          <span class="species">[Species name]</span>
+          <div class="log-line"><span>[Location]</span><span class="leader"></span><span>[Date]</span></div>
+        </figcaption>
+      </figure>
+      <figure>
+        <div class="placeholder-img">Photo placeholder</div>
+        <figcaption>
+          <span class="species">[Species name]</span>
+          <div class="log-line"><span>[Location]</span><span class="leader"></span><span>[Date]</span></div>
+        </figcaption>
+      </figure>
+    </div>
+    <a class="btn" href="gallery.html" style="margin-top:34px; display:inline-block;">See all photos →</a>
+  </div>
+</section>
+
+<section class="dark">
+  <div class="wrap grid grid-2" style="align-items:center;">
+    <div class="placeholder-img tall">Portrait placeholder<br>— photo of Jie in the field —</div>
+    <div>
+      <span class="eyebrow">About Jie</span>
+      <h2 style="font-size:clamp(1.8rem,4vw,2.6rem); font-style:italic; margin-top:8px;">An eye for the overlooked.</h2>
+      <p class="body-text" style="margin-top:16px;">[Placeholder — a short line about how long Jie's been birding, favorite Maryland spots, or what got him into it.]</p>
+      <a class="btn" href="about.html" style="margin-top:18px; display:inline-block;">Read more</a>
+    </div>
+  </div>
+</section></div>
+<div id="gallery"><section class="hero" style="padding:60px 0 40px;">
+  <div class="wrap">
+    <span class="eyebrow">Full photo log</span>
+    <h1 style="font-size:clamp(2.4rem,7vw,4.4rem);">Gallery</h1>
+  </div>
+</section>
+
+<section style="padding-top:44px;" id="birding">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Birding</h2>
+      <span class="count">[00] species logged</span>
+    </div>
+    <div class="grid grid-4">
+      <figure>
+        <div class="placeholder-img">Photo placeholder</div>
+        <figcaption>
+          <span class="species">[Species name]</span>
+          <div class="log-line"><span>[Location]</span><span class="leader"></span><span>[Date]</span></div>
+        </figcaption>
+      </figure>
+      <figure>
+        <div class="placeholder-img">Photo placeholder</div>
+        <figcaption>
+          <span class="species">[Species name]</span>
+          <div class="log-line"><span>[Location]</span><span class="leader"></span><span>[Date]</span></div>
+        </figcaption>
+      </figure>
+      <figure>
+        <div class="placeholder-img">Photo placeholder</div>
+        <figcaption>
+          <span class="species">[Species name]</span>
+          <div class="log-line"><span>[Location]</span><span class="leader"></span><span>[Date]</span></div>
+        </figcaption>
+      </figure>
+      <figure>
+        <div class="placeholder-img">Photo placeholder</div>
+        <figcaption>
+          <span class="species">[Species name]</span>
+          <div class="log-line"><span>[Location]</span><span class="leader"></span><span>[Date]</span></div>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="dark" style="padding-top:64px;" id="animals">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Animals</h2>
+      <span class="count">[00] sightings logged</span>
+    </div>
+    <div class="grid grid-4">
+      <figure>
+        <div class="placeholder-img">Photo placeholder</div>
+        <figcaption>
+          <span class="species">[Subject name]</span>
+          <div class="log-line"><span>[Location]</span><span class="leader"></span><span>[Date]</span></div>
+        </figcaption>
+      </figure>
+      <figure>
+        <div class="placeholder-img">Photo placeholder</div>
+        <figcaption>
+          <span class="species">[Subject name]</span>
+          <div class="log-line"><span>[Location]</span><span class="leader"></span><span>[Date]</span></div>
+        </figcaption>
+      </figure>
+      <figure>
+        <div class="placeholder-img">Photo placeholder</div>
+        <figcaption>
+          <span class="species">[Subject name]</span>
+          <div class="log-line"><span>[Location]</span><span class="leader"></span><span>[Date]</span></div>
+        </figcaption>
+      </figure>
+      <figure>
+        <div class="placeholder-img">Photo placeholder</div>
+        <figcaption>
+          <span class="species">[Subject name]</span>
+          <div class="log-line"><span>[Location]</span><span class="leader"></span><span>[Date]</span></div>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:64px;" id="landscapes">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Landscapes</h2>
+      <span class="count">[00] scenes logged</span>
+    </div>
+    <div class="grid grid-4">
+      <figure>
+        <div class="placeholder-img">Photo placeholder</div>
+        <figcaption>
+          <span class="species">[Scene name]</span>
+          <div class="log-line"><span>[Location]</span><span class="leader"></span><span>[Date]</span></div>
+        </figcaption>
+      </figure>
+      <figure>
+        <div class="placeholder-img">Photo placeholder</div>
+        <figcaption>
+          <span class="species">[Scene name]</span>
+          <div class="log-line"><span>[Location]</span><span class="leader"></span><span>[Date]</span></div>
+        </figcaption>
+      </figure>
+      <figure>
+        <div class="placeholder-img">Photo placeholder</div>
+        <figcaption>
+          <span class="species">[Scene name]</span>
+          <div class="log-line"><span>[Location]</span><span class="leader"></span><span>[Date]</span></div>
+        </figcaption>
+      </figure>
+      <figure>
+        <div class="placeholder-img">Photo placeholder</div>
+        <figcaption>
+          <span class="species">[Scene name]</span>
+          <div class="log-line"><span>[Location]</span><span class="leader"></span><span>[Date]</span></div>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+</section></div>
+<div id="locations"><section class="hero" style="padding:60px 0 40px;">
+  <div class="wrap">
+    <span class="eyebrow">Where to find him</span>
+    <h1 style="font-size:clamp(2.4rem,7vw,4.4rem);">Locations</h1>
+    <p class="sub">A few of Jie's regular Maryland birding spots. [Replace with the actual places he frequents.]</p>
+  </div>
+</section>
+
+<section style="padding-top:44px;">
+  <div class="wrap">
+    <div class="card" style="margin-bottom:20px;">
+      <div class="log-line" style="font-size:.9rem; margin-bottom:8px;"><span>[Location name, e.g. Blackwater NWR]</span><span class="leader"></span><span>Eastern Shore</span></div>
+      <p class="body-text" style="opacity:.85; margin:0;">[Note on what's usually seen here, best season, or a favorite memory.]</p>
+    </div>
+    <div class="card" style="margin-bottom:20px;">
+      <div class="log-line" style="font-size:.9rem; margin-bottom:8px;"><span>[Location name]</span><span class="leader"></span><span>[Region]</span></div>
+      <p class="body-text" style="opacity:.85; margin:0;">[Note on what's usually seen here, best season, or a favorite memory.]</p>
+    </div>
+    <div class="card">
+      <div class="log-line" style="font-size:.9rem; margin-bottom:8px;"><span>[Location name]</span><span class="leader"></span><span>[Region]</span></div>
+      <p class="body-text" style="opacity:.85; margin:0;">[Note on what's usually seen here, best season, or a favorite memory.]</p>
+    </div>
+  </div>
+</section></div>
+<div id="about"><section class="hero" style="padding:60px 0 40px;">
+  <div class="wrap">
+    <span class="eyebrow">The birder behind the lens</span>
+    <h1 style="font-size:clamp(2.4rem,7vw,4.4rem);">About Jie</h1>
+  </div>
+</section>
+
+<section style="padding-top:44px;">
+  <div class="wrap grid grid-2">
+    <div>
+      <div class="placeholder-img tall">Portrait placeholder<br>— photo of Jie in the field —</div>
+      <div class="log-line" style="margin-top:20px; font-size:.85rem;"><span>Birding since</span><span class="leader"></span><span>[Year]</span></div>
+      <div class="log-line" style="margin-top:8px; font-size:.85rem;"><span>Home base</span><span class="leader"></span><span>Maryland</span></div>
+      <div class="log-line" style="margin-top:8px; font-size:.85rem;"><span>Life list</span><span class="leader"></span><span>[Count] species</span></div>
+    </div>
+    <div>
+      <p class="lede">[Placeholder bio — replace with Jie's own story: how he got into birding, how long he's been at it, and what keeps him going.]</p>
+      <p class="body-text">[Add details on favorite species, memorable sightings, gear he shoots with, or his current life list count.]</p>
+    </div>
+  </div>
+</section></div>
+<div id="contact"><section class="dark contact-hero" style="min-height:55vh;">
+  <div class="wrap" style="width:100%;">
+    <span class="eyebrow">For questions and reuse</span>
+    <h1 style="font-size:clamp(2.4rem,7vw,4.4rem); margin-top:8px;">Contact</h1>
+    <span class="eyebrow" style="display:block; margin-top:12px;">Say hello!</span>
+    <div style="margin-top:30px; display:flex; flex-direction:column; gap:8px;">
+      <p class="body-text" style="opacity:.9; margin:0;">Email: <a href="mailto:jay_yang_03@yahoo.com" style="text-decoration:underline;">jay_yang_03@yahoo.com</a></p>
+      <p class="body-text" style="opacity:.9; margin:0;">Instagram: <a href="https://www.instagram.com/jieyang_ig/" target="_blank" rel="noopener" style="text-decoration:underline;">@jieyang_ig</a></p>
+      <p class="body-text" style="opacity:.9; margin:0;">[Add eBird profile or Flickr link here.]</p>
+    </div>
+  </div>
+</section></div>
+
+<footer class="site">
+  <div class="wrap foot-row">
+    <span class="foot-note mono">MD BIRDER SINCE [YEAR]</span>
+    <a href="https://www.instagram.com/jieyang_ig/" target="_blank" rel="noopener" class="foot-note mono" style="color:var(--oriole);">Instagram &#8599;</a>
+    <span class="foot-note">&copy; Jie Yang Photography. Placeholder site &mdash; replace photos and text before publishing.</span>
+  </div>
+</footer>
+
+</body>
+</html>
