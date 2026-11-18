@@ -268,20 +268,11 @@ div[id]{scroll-margin-top:90px;}
       <h2>Recent sightings</h2>
       <span class="count" id="recentCount">[00] species logged</span>
     </div>
-    <div class="grid grid-3" id="recentSightings"></div>
+    <div class="grid grid-4" id="recentSightings"></div>
     <a class="btn" href="#gallery" style="margin-top:34px; display:inline-block;">See all photos →</a>
   </div>
 </section>
 
-<section class="dark">
-  <div class="wrap grid grid-2" style="align-items:center;">
-    <div class="placeholder-img tall" data-imgkey="home-portrait">Portrait placeholder<br>— photo of Jie in the field —</div>
-    <div>
-      <h2 style="font-size:clamp(1.8rem,4vw,2.6rem); font-style:italic; margin-top:8px;">An eye for the overlooked.</h2>
-      <p class="body-text" style="margin-top:16px;" data-editkey="home-about-teaser">Self-taught birder and photographer exploring sights and sounds of Maryland.</p>
-    </div>
-  </div>
-</section>
 </div>
 
 <div id="gallery">
@@ -455,7 +446,7 @@ div[id]{scroll-margin-top:90px;}
     el.textContent = `[${String(n).padStart(2,'0')}] ${label}`;
   }
 
-  renderInto('recentSightings', null, 12, true);
+  renderInto('recentSightings', null, 4, true);
   renderCount('recentCount', 'Birding', 'species logged', true);
   renderInto('birdingPreview', 'Birding', 4);
   renderCount('birdingCount', 'Birding', 'species logged', true);
